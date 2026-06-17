@@ -1,0 +1,19 @@
+<!--pages/scene/scene.wxml - 场景选择页-->
+<view class="container">
+  <view class="header">
+    <text class="title">选择场景</text>
+    <text class="subtitle">不同场景，不同风格</text>
+  </view>
+
+  <view class="scene-grid">
+    <view class="scene-item {{selectedScene === item.id ? 'selected' : ''}}" 
+          wx:for="{{scenes}}" wx:key="id"
+          bindtap="selectScene" data-id="{{item.id}}">
+      <image class="scene-icon" src="{{item.icon}}" mode="aspectFit"></image>
+      <text class="scene-name">{{item.name}}</text>
+      <text class="scene-desc">{{item.description}}</text>
+    </view>
+  </view>
+
+  <button class="next-button" disabled="{{!selectedScene}}" bindtap="goUpload">下一步</button>
+</view>

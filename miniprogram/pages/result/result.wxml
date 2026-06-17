@@ -1,0 +1,62 @@
+<!--pages/result/result.wxml - 结果展示页-->
+<view class="container">
+  <view class="result-header">
+    <text class="title">生成完成</text>
+    <text class="subtitle">选择你喜欢的风格</text>
+  </view>
+
+  <!-- 风格选择横滑 -->
+  <scroll-view class="style-scroll" scroll-x="true" enhanced="true" show-scrollbar="false">
+    <view class="style-list">
+      <view class="style-item {{selectedStyle === item.id ? 'selected' : ''}}"
+            wx:for="{{styles}}" wx:key="id"
+            bindtap="selectStyle" data-id="{{item.id}}">
+        <view class="style-preview">
+          <image class="style-thumb" src="{{item.thumbnail}}" mode="aspectFill"></image>
+          <view class="watermark" wx:if="{{!unlocked}}">AI证件照</view>
+        </view>
+        <text class="style-name">{{item.name}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 对比展示 -->
+  <view class="compare-section">
+    <view class="compare-item">
+      <text class="compare-label">原图</text>
+      <image class="compare-image" src="{{originalImage}}" mode="aspectFit"></image>
+    </view>
+    <view class="compare-arrow">→</view>
+    <view class="compare-item">
+      <text class="compare-label">生成效果</text>
+      <image class="compare-image" src="{{resultImage}}" mode="aspectFit"></image>
+      <view class="watermark-large" wx:if="{{!unlocked}}">预览效果</view>
+    </view>
+  </view>
+
+  <!-- 解锁区域 -->
+  <view class="unlock-section" wx:if="{{!unlocked}}">
+    <text class="unlock-title">解锁高清无水印版本</text>
+    
+    <view class="unlock-options">
+      <view class="option-card" bindtap="watchAd">
+        <view class="option-icon">🎬</view>
+        <text class="option-title">看广告免费</text>
+        <text class="option-desc">观看 15 秒视频</text>
+      </view>
+
+      <view class="option-card premium" bindtap="subscribe">
+        <view class="option-badge">推荐</view>
+        <view class="option-icon">⭐</view>
+        <text class="option-title">月度会员</text>
+        <text class="option-desc">¥9.9/月 · 无限生成</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 已解锁 -->
+  <view class="unlocked-section" wx:else>
+    <button class="download-button" bindtap="downloadImage">保存到相册</button>
+    <button class="share-button" open-type="share">分享给朋友</button>
+  </view>
+</view>

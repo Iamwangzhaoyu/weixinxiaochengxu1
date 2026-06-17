@@ -1,0 +1,27 @@
+<!--pages/index/index.wxml - 首页-->
+<view class="container">
+  <view class="hero">
+    <image class="hero-image" src="/images/hero-compare.png" mode="aspectFit"></image>
+    <view class="hero-text">
+      <text class="hero-title">AI 职业形象照</text>
+      <text class="hero-subtitle">一张自拍，多种专业风格</text>
+    </view>
+  </view>
+
+  <view class="scene-list">
+    <!-- 场景卡片列表 - 由数据驱动 -->
+    <view class="scene-card" wx:for="{{scenes}}" wx:key="id" bindtap="selectScene" data-id="{{item.id}}">
+      <image class="scene-thumb" src="{{item.thumbnail}}" mode="aspectFill"></image>
+      <view class="scene-info">
+        <text class="scene-name">{{item.name}}</text>
+        <text class="scene-price">{{item.priceLabel}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="social-proof">
+    <text class="proof-text">已有 {{userCount}} 位用户使用</text>
+  </view>
+
+  <button class="cta-button" bindtap="startGenerate">开始生成</button>
+</view>

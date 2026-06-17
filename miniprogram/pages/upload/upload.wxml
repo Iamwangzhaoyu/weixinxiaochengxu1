@@ -1,0 +1,33 @@
+<!--pages/upload/upload.wxml - 上传照片页-->
+<view class="container">
+  <view class="header">
+    <text class="title">上传照片</text>
+    <text class="subtitle">选择一张正面清晰的照片</text>
+  </view>
+
+  <view class="upload-area" bindtap="chooseImage">
+    <block wx:if="{{!imagePath}}">
+      <view class="upload-placeholder">
+        <image class="upload-icon" src="/images/icon-upload.png" mode="aspectFit"></image>
+        <text class="upload-text">点击上传照片</text>
+        <text class="upload-hint">支持 JPG、PNG，建议 1MB 以内</text>
+      </view>
+    </block>
+    <block wx:else>
+      <image class="preview-image" src="{{imagePath}}" mode="aspectFit"></image>
+      <view class="change-btn">更换照片</view>
+    </block>
+  </view>
+
+  <view class="tips">
+    <text class="tips-title">拍照建议</text>
+    <view class="tip-item">• 正面免冠，面部清晰</view>
+    <view class="tip-item">• 光线均匀，避免阴影</view>
+    <view class="tip-item">• 背景简洁，无杂物</view>
+    <view class="tip-item">• 表情自然，不遮挡五官</view>
+  </view>
+
+  <button class="generate-button" disabled="{{!imagePath || generating}}" bindtap="generatePhoto">
+    {{generating ? '生成中...' : '开始生成'}}
+  </button>
+</view>
