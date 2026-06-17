@@ -1,0 +1,9 @@
+{
+  "name": "poc-facefusion",
+  "version": "1.0.0",
+  "description": "PoC 云函数：人脸保持验证（FaceFusion）— 卡点① Kill Point 01",
+  "main": "index.js",
+  "dependencies": {
+    "tencentcloud-sdk-nodejs": "^4.0.0"
+  }
+}
